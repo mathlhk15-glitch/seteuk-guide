@@ -1,4 +1,5 @@
-/* 탐구 도움서(seteuk-guide) ↔ 경일 진로·탐구 성장 시스템 연결 v1.0
+/* 탐구 도움서(seteuk-guide) ↔ 경일 진로·탐구 성장 시스템 연결 v1.1
+ * v1.1: 15번 워크시트 아래에 「허브 내 탐구노트로 돌아가기」 링크 추가
  * 공통 메뉴, 공통 기준(질문 수준 4단계·질문 유형별 방법)을 본문에 그리고,
  * 15번 워크시트의 일곱 칸을 공통 탐구노트로 보냅니다. 스크립트가 막혀도 본문은 그대로 읽힙니다.
  */
@@ -50,6 +51,9 @@
     send.parentNode.after(pickWrap);
     var msg = document.createElement('p'); msg.className = 'kis-msg'; msg.setAttribute('role', 'status');
     pickWrap.after(msg);
+    var back = document.createElement('p'); back.className = 'kis-msg';
+    back.innerHTML = '<a href="' + S.hub + 'notes.html" style="display:inline-flex;align-items:center;min-height:44px;font-weight:700">📓 허브 내 탐구노트로 돌아가기 →</a>';
+    msg.after(back);
     send.addEventListener('click', function () {
       function v(i) { var el = document.getElementById('note' + i); return el ? el.value.trim() : ''; }
       if (![0, 1, 2, 3, 4, 5, 6].some(function (i) { return v(i); })) { msg.textContent = '아직 적은 내용이 없어요. 일곱 칸 중 하나 이상을 적은 뒤 보내 주세요.'; return; }
